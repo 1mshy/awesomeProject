@@ -5,8 +5,7 @@ import (
 )
 
 func main() {
-  primes(10000)
-	webhook()
+  timeIt()
 }
 
 func dojson(str string) {

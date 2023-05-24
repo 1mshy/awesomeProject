@@ -5,6 +5,7 @@ import (
 )
 
 func main() {
+  primes(10000)
 	webhook()
 }
 

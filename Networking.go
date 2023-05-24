@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+  "ioutil"
 )
 
 func webhook() {
@@ -36,4 +37,17 @@ func postJson(url string, data map[string]string) {
 	if err != nil {
 		return
 	}
+}
+
+func getRequest(url string) string {
+  response, err := http.Get(url)
+  if err != nil {
+      log.Fatalln(err)
+  }
+  body, err := ioutil.ReadAll(response.Body)
+  if err != nil {
+      log.Fatalln(err)
+  }
+  str := string(body)
+  return str;
 }

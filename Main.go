@@ -7,6 +7,7 @@ import (
 func main() {
 	//timeIt()
 	webhook()
+  getIp()
 }
 
 func dojson(str string) {

@@ -2,25 +2,10 @@ package main
 
 import (
 	"encoding/json"
-	"io/ioutil"
-	"net/http"
 )
 
 func main() {
-	rep, err := http.Get("http://10.0.0.32:8080/discord")
-	DoErr(&err)
-	body, err := ioutil.ReadAll(rep.Body)
-	DoErr(&err)
-	ss := string(body)
-	dojson(ss)
-
-	println()
-	var i int
-	for i < 1000 {
-		isPrime(i)
-		i++
-	}
-	println()
+	webhook()
 }
 
 func dojson(str string) {

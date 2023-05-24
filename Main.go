@@ -5,7 +5,8 @@ import (
 )
 
 func main() {
-  timeIt()
+	//timeIt()
+	webhook()
 }
 
 func dojson(str string) {

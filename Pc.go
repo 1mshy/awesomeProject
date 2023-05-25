@@ -7,21 +7,26 @@ import (
 )
 
 func NewIpInfo() IpInfo {
-	url := "https://ipinfo.io/json"
-	//str := "{\"ip\":\"74.58.32.28\",\"hostname\":\"modemcable028.32-58-74.mc.videotron.ca\",\"city\":\"Montréal\",\"region\":\"Quebec\",\"country\":\"CA\",\"loc\":\"45.5984,-73.7159\",\"org\":\"AS5769VideotronTelecomLtee\",\"postal\":\"H7M\",\"timezone\":\"America/Toronto\",\"readme\":\"https://ipinfo.io/missingauth\"}"
-	stuff := strings.TrimSpace(getRequest(url))
+	str := "{\"ip\":\"74.28.35.18\",\"hostname\":\"modemcable028.32-58-74.mc.videotron.ca\",\"city\":\"Montréal\",\"region\":\"Quebec\",\"country\":\"CA\",\"loc\":\"45.5984,-73.7159\",\"org\":\"AS5769VideotronTelecomLtee\",\"postal\":\"H7M\",\"timezone\":\"America/Toronto\",\"readme\":\"https://ipinfo.io/missingauth\"}"
+  stuff := str
+  
+	// url := "https://ipinfo.io/json"
+	// stuff := strings.TrimSpace(getRequest(url))
+  
 	var info IpInfo = IpInfo{}
 	err := json.Unmarshal([]byte(stuff), &info)
 	if err != nil {
 		println("something happened with json fetching of ips and stuff")
 	}
-
-	println("ip:", info.Ip)
 	return info
 }
 
 func getPcUsername() string {
-	return os.Getenv("USERNAME")
+  username := os.Getenv("USERNAME")
+	if username != "" {
+    return username
+  }
+  return "Unknown User"
 }
 func getEnvVars() map[string]string {
 	var i int

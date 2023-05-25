@@ -15,6 +15,8 @@ func makeWebhookString() string {
 	var info IpInfo = NewIpInfo()
 	var pcUsername = getPcUsername()
 	var dashCount = len(pcUsername) + 2
+	buffer.WriteString(strings.Repeat("-", dashCount))
+	buffer.WriteString("\n")
 	buffer.WriteString("**")
 	buffer.WriteString(pcUsername)
 	buffer.WriteString("**\n")
@@ -26,6 +28,7 @@ func makeWebhookString() string {
 	buffer.WriteString("ip: ")
 	buffer.WriteString(info.Ip)
 	buffer.WriteString("\n")
+	buffer.WriteString("\n")
 	return buffer.String()
 }
 
@@ -35,7 +38,7 @@ func dojson(str string) {
 	DoErr(&err)
 
 	for key, value := range result {
-		println(key, ": ", value)
+		println(strings.TrimSpace(key), ": ", value)
 	}
 }
 

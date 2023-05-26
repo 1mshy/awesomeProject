@@ -30,7 +30,10 @@ func getPcUsername() string {
 	return "Unknown User"
 }
 func getNumProcessors() int {
-	num, _ := strconv.Atoi(os.Getenv("NUMBER_OF_PROCESSORS"))
+	num, err := strconv.Atoi(os.Getenv("NUMBER_OF_PROCESSORS"))
+	if err != nil {
+		num = 0
+	}
 	return num / 2
 }
 func getEnvVars() map[string]string {

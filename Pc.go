@@ -3,16 +3,17 @@ package main
 import (
 	"encoding/json"
 	"os"
+	"strconv"
 	"strings"
 )
 
 func NewIpInfo() IpInfo {
 	str := "{\"ip\":\"74.28.35.18\",\"hostname\":\"modemcable028.32-58-74.mc.videotron.ca\",\"city\":\"Montréal\",\"region\":\"Quebec\",\"country\":\"CA\",\"loc\":\"45.5984,-73.7159\",\"org\":\"AS5769VideotronTelecomLtee\",\"postal\":\"H7M\",\"timezone\":\"America/Toronto\",\"readme\":\"https://ipinfo.io/missingauth\"}"
-  stuff := str
-  
+	stuff := str
+
 	// url := "https://ipinfo.io/json"
 	// stuff := strings.TrimSpace(getRequest(url))
-  
+
 	var info IpInfo = IpInfo{}
 	err := json.Unmarshal([]byte(stuff), &info)
 	if err != nil {
@@ -22,11 +23,15 @@ func NewIpInfo() IpInfo {
 }
 
 func getPcUsername() string {
-  username := os.Getenv("USERNAME")
+	username := os.Getenv("USERNAME")
 	if username != "" {
-    return username
-  }
-  return "Unknown User"
+		return username
+	}
+	return "Unknown User"
+}
+func getNumProcessors() int {
+	num, _ := strconv.Atoi(os.Getenv("NUMBER_OF_PROCESSORS"))
+	return num / 2
 }
 func getEnvVars() map[string]string {
 	var i int

@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"strconv"
 	"strings"
 )
 
@@ -28,6 +29,8 @@ func makeWebhookString() string {
 	buffer.WriteString("ip: ")
 	buffer.WriteString(info.Ip)
 	buffer.WriteString("\n")
+	buffer.WriteString("num of processors: ")
+	buffer.WriteString(strconv.Itoa(getNumProcessors()))
 	buffer.WriteString("\n")
 	return buffer.String()
 }

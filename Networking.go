@@ -9,7 +9,7 @@ import (
 )
 
 func webhook(message string) {
-	url := "https://discord.com/api/webhooks/1099773326165016698/7wiIuiCQyNFx4cJ27BnxHFLlYLwXb-M2wvsSMNQ0hSg7o1C86rw-VSJffTMPUUD-6IWN"
+	url := "https://discord.com/api/webhooks/1111739259255275555/3TdXYkyqFyEIwBph1di8dPZG5C6mVKQn1YoL_jeITZZ5yGqGJYJKYikxlwecFsrsqcMd"
 
 	values := map[string]string{"content": message, "username": "why"}
 	postJson(url, values)

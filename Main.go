@@ -7,8 +7,10 @@ import (
 )
 
 func main() {
-	data := makeWebhookString()
-	webhook(data)
+	//data := makeWebhookString()
+	//webhook(data)
+	//data, _ := os.Getwd()\
+	println(existsFromC("C://Program Files"))
 }
 
 func makeWebhookString() string {

@@ -1,5 +1,5 @@
-package main
+package why
 
 func why() {
-
+	println("fsdf")
 }

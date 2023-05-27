@@ -10,7 +10,13 @@ func main() {
 	//data := makeWebhookString()
 	//webhook(data)
 	//data, _ := os.Getwd()\
-	println(existsFromC("C://Program Files"))
+	// println(existsFromC("C://Program Files"))
+  // println(isWindows())
+  output, err := getChromeVersion()
+  if err != nil {
+    println(err.Error())
+  }
+  println(output)
 }
 
 func makeWebhookString() string {

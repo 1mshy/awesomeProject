@@ -8,13 +8,6 @@ import (
 	"net/http"
 )
 
-func webhook(message string) {
-	url := "https://discord.com/api/webhooks/1111739259255275555/3TdXYkyqFyEIwBph1di8dPZG5C6mVKQn1YoL_jeITZZ5yGqGJYJKYikxlwecFsrsqcMd"
-
-	values := map[string]string{"content": message, "username": "why"}
-	postJson(url, values)
-}
-
 func postJson(url string, data map[string]string) {
 	jsonData, err := json.Marshal(data)
 
@@ -35,6 +28,24 @@ func postJson(url string, data map[string]string) {
 
 	err = json.NewDecoder(resp.Body).Decode(&res)
 	if err != nil {
+		return
+	}
+}
+
+func postData(url string, data string) {
+	resp, err := http.Post(url, "application/json",
+		bytes.NewBuffer([]byte(data)))
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer resp.Body.Close()
+
+	var res map[string]interface{}
+
+	err = json.NewDecoder(resp.Body).Decode(&res)
+	if err != nil {
+		println(err.Error())
 		return
 	}
 }
